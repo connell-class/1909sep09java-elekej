@@ -248,9 +248,6 @@ public class EvaluationService {
             }
          System.out.println(map);
          return map;
-
-		
-		return null;
 	}
 
 	/**
@@ -426,15 +423,14 @@ public class EvaluationService {
 		
            long n = l;
         List<Long> factors = new ArrayList<Long>();
-        for (long i = 2; i <= n / i; i++) {
-            while (n % i == 0) {
-                factors.add(i);
+        for (int i = 2; i <= n ; i++) {
+            if (n % i == 0) {
+                factors.add((long) i);
                 n /= i;
+                i--;
             }
         }
-        if (n > 1) {
-            factors.add(n);
-        }
+        
           return factors;
 		
 		
@@ -513,32 +509,25 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
-	
-          public int calculateNthPrime(int i) {
-          // TODO Write an implementation for this method declaration
-            Scanner sc = new Scanner(System.in);
-            System.out.print("Enter n to compute the nth prime number: ");
-            int nth = sc.nextInt();
-            int num, count;
-            num=1;
-            count=0;
 
-            while (count < nth){
-            num=num+1;
-           for (i = 2; i <= num; i++){ //Here we will loop from 2 to num
-           if (num % i == 0) {
-           break;
+         public int calculateNthPrime(int i) {
+         // TODO Write an implementation for this method declaration
+         System.out.print("Enter n to compute the nth prime number: ");
+         int num, count;
+         num=1;
+         count=0;
+         
+        num=num+1;
+         for (i = 2; i <= num; i++){ 
+          if (num % i == 0) {
+             break;
            }
-        }
-           if ( i == num){//if it is a prime number
-            count = count+1;
      }
-   }
-   System.out.println("Value of nth prime: " + num);
-
-		
-		return 0;
-	}
+        if ( i == num){//if the number is a prime number
+             count = count+1;
+     }
+return 0;
+}
 
 	/**
 	 * 13 & 14. Create an implementation of the atbash cipher, an ancient encryption
