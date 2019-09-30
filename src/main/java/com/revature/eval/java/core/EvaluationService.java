@@ -1,8 +1,13 @@
 package com.revature.eval.java.core;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class EvaluationService {
 
@@ -29,9 +34,21 @@ public class EvaluationService {
 	 * @param phrase
 	 * @return
 	 */
-	public String acronym(String phrase) {
+	public String acronym(String word) {
 		// TODO Write an implementation for this method declaration
-		return null;
+	
+			String acronyms = " ";
+			
+			acronyms += word.toUpperCase().charAt(0);
+			for (int i = 1; i <= word.length() - 1; i++)
+			           if (word.charAt(i - 1) == ' ' || word.charAt(i - 1) == '-') {
+			            acronyms += word.toUpperCase().charAt(i);
+			           }
+			//System.out.print(" " + Character.toUpperCase(
+			                                       //phrase.charAt(i + 1)));
+			System.out.println(acronyms);
+			return word;
+	
 	}
 
 	/**
@@ -42,63 +59,78 @@ public class EvaluationService {
 	 * exercise we'll say at least two.) A scalene triangle has all sides of
 	 * different lengths.
 	 *
-	 */
-	static class Triangle {
+//	 */
+		static class Triangle {
 		private double sideOne;
 		private double sideTwo;
 		private double sideThree;
 
 		public Triangle() {
-			super();
+		super();
 		}
 
 		public Triangle(double sideOne, double sideTwo, double sideThree) {
-			this();
-			this.sideOne = sideOne;
-			this.sideTwo = sideTwo;
-			this.sideThree = sideThree;
+		this();
+		this.sideOne = sideOne;
+		this.sideTwo = sideTwo;
+		this.sideThree = sideThree;
 		}
 
 		public double getSideOne() {
-			return sideOne;
+		return sideOne;
 		}
 
 		public void setSideOne(double sideOne) {
-			this.sideOne = sideOne;
+		this.sideOne = sideOne;
 		}
 
 		public double getSideTwo() {
-			return sideTwo;
+		return sideTwo;
 		}
 
 		public void setSideTwo(double sideTwo) {
-			this.sideTwo = sideTwo;
+		this.sideTwo = sideTwo;
 		}
 
 		public double getSideThree() {
-			return sideThree;
+		return sideThree;
 		}
 
 		public void setSideThree(double sideThree) {
-			this.sideThree = sideThree;
+		this.sideThree = sideThree;
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
-			return false;
+		// TODO Write an implementation for this method declaration
+		if(sideOne == sideTwo && sideTwo == sideThree) {
+		System.out.println("Triangle is Equilateral");
+		return true;
+		}else
+		return false;
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
-			return false;
+		// TODO Write an implementation for this method declaration
+		if(sideOne == sideThree && sideOne != sideTwo) {
+		System.out.println("Triangle is Isosceles");
+		return true;
+		//System.out.println();
+		}else
+		return false;
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
-			return false;
+		// TODO Write an implementation for this method declaration
+		if(sideOne != sideTwo && sideTwo!= sideThree) {
+		System.out.println("This is Scalene");
+		return true;
+		}else
+		return false;
 		}
 
-	}
+		}
+
+	
 
 	/**
 	 * 4. Given a word, compute the scrabble score for that word.
@@ -117,9 +149,43 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
-		return 0;
-	}
+		
+			int score = 0;
+			   String upperWord = string.toUpperCase();
+			   for (int i = 0; i < upperWord.length(); i++){
+			       char calculatedLetter = upperWord.charAt(i);
+			       score += calculatedLetter;
+			       System.out.println(score);
+			       
+		  switch (calculatedLetter){
+			            case 'G':
+			            case 'D': return 2;
 
+			            case 'B':
+			            case 'C':
+			            case 'M':
+			            case 'P': return 3;
+
+			            case 'F':
+			            case 'H':
+			            case 'V':
+			            case 'W':
+		                case 'Y': return 4;
+
+	                    case 'K': return 5;
+
+		                case 'J':
+		                case 'X': return 8;
+
+			             case 'Q':
+			             case 'Z': return 10;
+
+			             default: return 1;
+			            }
+			        }
+			        return score;
+			        //return 0;
+	
 	/**
 	 * 5. Clean up user-entered phone numbers so that they can be sent SMS messages.
 	 * 
@@ -151,9 +217,6 @@ public class EvaluationService {
 	 * Note: As this exercise only deals with telephone numbers used in
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
-	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
 	}
 
 	/**
@@ -165,8 +228,28 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
+//	
+
+           public Map<String, Integer> wordCount(String string) {
+          // TODO Write an implementation for this method declaration
+          //String input;
+           //int num;
+        Map<String, Integer> map = new HashMap<String, Integer> ();
+        String[] strings = string.split(" ");
+        for (String s:strings) {
+   
+         if (!map.containsKey(s)) {  // first time we've seen this string
+           map.put(s, 1);
+            }
+         else {
+                int count = map.get(s);
+                map.put(s, count + 1);
+        }
+            }
+         System.out.println(map);
+         return map;
+
+		
 		return null;
 	}
 
@@ -205,28 +288,72 @@ public class EvaluationService {
 	 * binary search is a dichotomic divide and conquer search algorithm.
 	 * 
 	 */
-	static class BinarySearch<T> {
-		private List<T> sortedList;
+           abstract class BinarySearch<T> {
+        	   private List<T> sortedList;
 
-		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
-			return 0;
-		}
+        	   public int indexOf(T t) {
+        	   // TODO Write an implementation for this method declaration
+        	   // int begin = 0;
+        	   // int last = T;
+        	   // int mid = 0;
+        	   // //T t;
+        	   // //int index = Collections.binarySearch(sortedList, key);
+        	   //// t = sortedList.get(mid);
+////        	               if(t.equals(string)) {
+////        	                  break;
+        	   // while(begin <= last) {
+        	   // mid = (begin + last) / 2;
+        	   // if(T < t) {
+        	   // begin = mid + 1;
+        	   // }
+        	   // else if(T > t) {
+        	   // last = mid - 1;
+        	   // return mid;
+        	   // }
+        	   // else {
+        	   // return mid;
+        	   // }
+        	   //// NOTE: Use String concatenation and char with new String to solve this
+        	   // }
+        	   // return -1;
 
-		public BinarySearch(List<T> sortedList) {
-			super();
-			this.sortedList = sortedList;
-		}
+        	   int size = sortedList.size();
+        	              
+        	   int min=0;
+        	    int max=size-1;
+                int mid=0;
+                 T l;
+        	              
+        	          for(int i =0;i<size;i++) {
+        	               mid = (min+max)/2;
+        	                l = sortedList.get(mid);
+        	               if(l.equals(t)) {
+        	                    break;
+        	                 }else if ((int)l < (int)t) {
+        	                    min = (int)mid+1;
+        	                 }else if ((int)l > (int)t) {
+        	                    max = (int)mid-1;
+        	                 }
+        	               }
+        	   return max;
+        	   }
 
-		public List<T> getSortedList() {
-			return sortedList;
-		}
+        	   public BinarySearch(List<T> sortedList) {
+        	   super();
+        	   this.sortedList = sortedList;
+        	   }
 
-		public void setSortedList(List<T> sortedList) {
-			this.sortedList = sortedList;
-		}
+        	   public List<T> getSortedList() {
+        	   return sortedList;
+        	   }
 
-	}
+        	   public void setSortedList(List<T> sortedList) {
+        	   this.sortedList = sortedList;
+        	   }
+
+        }
+
+
 
 	/**
 	 * 8. Implement a program that translates from English to Pig Latin.
@@ -265,9 +392,23 @@ public class EvaluationService {
 	 * @param input
 	 * @return
 	 */
-	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
-		return false;
+	
+		public boolean isArmstrongNumber(int input) {
+			// TODO Write an implementation for this method declaration
+			int result = 0;
+			        int orig = input;
+			        while(input != 0){
+			            int remainder = input%10;
+			            result = result + remainder*remainder*remainder;
+			            input = input/10;
+			        }
+			        //number is Armstrong return true
+			        if(orig == result){
+			            return true;
+			        }
+			     
+			        return  false;
+		
 	}
 
 	/**
@@ -282,7 +423,21 @@ public class EvaluationService {
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		
+           long n = l;
+        List<Long> factors = new ArrayList<Long>();
+        for (long i = 2; i <= n / i; i++) {
+            while (n % i == 0) {
+                factors.add(i);
+                n /= i;
+            }
+        }
+        if (n > 1) {
+            factors.add(n);
+        }
+          return factors;
+		
+		
 	}
 
 	/**
@@ -321,8 +476,28 @@ public class EvaluationService {
 
 		public String rotate(String string) {
 			// TODO Write an implementation for this method declaration
-			return null;
-		}
+
+       StringBuffer result= new StringBuffer();
+ 
+       for (int i=0; i<string.length(); i++)
+       {
+           if (Character.isUpperCase(string.charAt(i)))
+           {
+               char ch = (char)(((int)string.charAt(i) +
+                                 key - 65) % 26 + 65);
+               result.append(ch);
+           }
+           else
+           {
+               char ch = (char)(((int)string.charAt(i) +
+                                 key - 97) % 26 + 97);
+               result.append(ch);
+           }
+       }
+       return string;
+
+
+
 
 	}
 
@@ -338,8 +513,30 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
-	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
+	
+          public int calculateNthPrime(int i) {
+          // TODO Write an implementation for this method declaration
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter n to compute the nth prime number: ");
+            int nth = sc.nextInt();
+            int num, count;
+            num=1;
+            count=0;
+
+            while (count < nth){
+            num=num+1;
+           for (i = 2; i <= num; i++){ //Here we will loop from 2 to num
+           if (num % i == 0) {
+           break;
+           }
+        }
+           if ( i == num){//if it is a prime number
+            count = count+1;
+     }
+   }
+   System.out.println("Value of nth prime: " + num);
+
+		
 		return 0;
 	}
 
@@ -375,9 +572,26 @@ public class EvaluationService {
 		 * @param string
 		 * @return
 		 */
-		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+		
+      public static char convertToInt(char a) {
+          if(a>='A' && a<='Z') {
+              return (char) ('Z' - (a - 'A'));
+          }else {
+              return (char) ('z' - (a - 'a'));
+          }
+     }
+    public static String encode(String string) {
+    // TODO Write an implementation for this method declaration
+     String output = "";
+          for(int i = 0,j=0;i<string.length();i++,j++) {
+              if((j%5==0) && (j!=0)) {
+                  output += " ";
+              }
+              output += convertToInt(string.charAt(i));
+          }
+          return output;
+//return null;
+			
 		}
 
 		/**
@@ -388,7 +602,16 @@ public class EvaluationService {
 		 */
 		public static String decode(String string) {
 			// TODO Write an implementation for this method declaration
-			return null;
+
+
+          String output = "";
+          for(int i = 0;i<string.length();i++) {
+              if(string.charAt(i)!=' ')
+                  output += String.valueOf(convertToInt(string.charAt(i)));
+          }
+          return output;
+//return null;
+			
 		}
 	}
 
@@ -414,9 +637,37 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public boolean isValidIsbn(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+	
+     public boolean isValidIsbn(String string) {
+     // TODO Write an implementation for this method declaration
+     // length must be 10
+        int n = string.length();
+        if (n != 10)
+            return false;
+ 
+        
+        int sum = 0;
+        for (int i = 0; i < 9; i++)  
+        {
+            int digit = string.charAt(i) - '0';
+            if (0 > digit || 9 < digit)
+                return false;
+            sum += (digit * (10 - i));
+        }
+ 
+        // Check last digit.
+        char last = string.charAt(9);
+        if (last != 'H' && (last < '0' ||  
+                            last > '9'))
+            return false;
+     // If last digit is 'H', add 10  
+        // to sum, else add its value
+        sum += ((last == 'H') ? 10 : (last - '0'));
+ 
+        // Return true if weighted sum  
+        // of digits is divisible by 11.
+        return (sum % 11 == 0);
+		
 	}
 
 	/**
@@ -447,7 +698,18 @@ public class EvaluationService {
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		final long gigasecond = 1000000000;
+		        final long gigaDays = gigasecond / 60 / 60 /24;
+		        System.out.println(gigaDays);
+
+		        Duration amount = Duration.ofDays(gigaDays);
+
+		        Temporal date = amount.addTo(given);
+
+//		        return date;
+		return given.plus(1_000_000_000, ChronoUnit.SECONDS);
+		//return null;
+		}
 	}
 
 	/**
