@@ -185,7 +185,7 @@ public class EvaluationService {
 			        }
 			        return score;
 			        //return 0;
-	
+	}
 	/**
 	 * 5. Clean up user-entered phone numbers so that they can be sent SMS messages.
 	 * 
@@ -217,7 +217,39 @@ public class EvaluationService {
 	 * Note: As this exercise only deals with telephone numbers used in
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
-	}
+			        
+			        public String cleanPhoneNumber(String string) {
+			    		// TODO Write an implementation for this method declaration
+			    		
+			        // TODO Write an implementation for this method declaration
+			        // String input = "1234567890";
+			        // string = String.format("(%s) %s-%s",
+//			                    input.substring(0, 3),
+//			                    input.substring(3, 6),
+//			                    input.substring(6, 10));
+			        // System.out.println(string);
+			        String number = "";
+
+			        for(int i=0; i<string.length(); i++) {
+
+			        char digit = string.charAt(i);
+
+			        if(digit == '-' || digit == ' ' || digit == '(' || digit == ')' || digit == '.') {
+
+			        continue;
+
+			        }
+
+			        number = number + string.charAt(i);
+			        }
+
+			        //return number;
+			        return string;
+
+			        }
+			        
+			        
+	
 
 	/**
 	 * 6. Given a phrase, count the occurrences of each word in that phrase.
@@ -285,70 +317,64 @@ public class EvaluationService {
 	 * binary search is a dichotomic divide and conquer search algorithm.
 	 * 
 	 */
-           abstract class BinarySearch<T> {
-        	   private List<T> sortedList;
+           static class BinarySearch<T> {
+       		private List<T> sortedList;
 
-        	   public int indexOf(T t) {
-        	   // TODO Write an implementation for this method declaration
-        	   // int begin = 0;
-        	   // int last = T;
-        	   // int mid = 0;
-        	   // //T t;
-        	   // //int index = Collections.binarySearch(sortedList, key);
-        	   //// t = sortedList.get(mid);
-////        	               if(t.equals(string)) {
-////        	                  break;
-        	   // while(begin <= last) {
-        	   // mid = (begin + last) / 2;
-        	   // if(T < t) {
-        	   // begin = mid + 1;
-        	   // }
-        	   // else if(T > t) {
-        	   // last = mid - 1;
-        	   // return mid;
-        	   // }
-        	   // else {
-        	   // return mid;
-        	   // }
-        	   //// NOTE: Use String concatenation and char with new String to solve this
-        	   // }
-        	   // return -1;
+       		public int indexOf(T t) {
+       			// TODO Write an implementation for this method declaration
+       			return 0;
+       		}
 
-        	   int size = sortedList.size();
-        	              
-        	   int min=0;
-        	    int max=size-1;
-                int mid=0;
-                 T l;
-        	              
-        	          for(int i =0;i<size;i++) {
-        	               mid = (min+max)/2;
-        	                l = sortedList.get(mid);
-        	               if(l.equals(t)) {
-        	                    break;
-        	                 }else if ((int)l < (int)t) {
-        	                    min = (int)mid+1;
-        	                 }else if ((int)l > (int)t) {
-        	                    max = (int)mid-1;
-        	                 }
-        	               }
-        	   return max;
-        	   }
+       		public BinarySearch(List<T> sortedList) {
+       			super();
+       			this.sortedList = sortedList;
+       		}
 
-        	   public BinarySearch(List<T> sortedList) {
-        	   super();
-        	   this.sortedList = sortedList;
-        	   }
+       		public List<T> getSortedList() {
+       			return sortedList;
+       		}
 
-        	   public List<T> getSortedList() {
-        	   return sortedList;
-        	   }
+       		public void setSortedList(List<T> sortedList) {
+       			this.sortedList = sortedList;
+       		}
 
-        	   public void setSortedList(List<T> sortedList) {
-        	   this.sortedList = sortedList;
-        	   }
-
-        }
+       	}
+//
+//           int size = sortedList.size();
+//           
+//    	   int min=0;
+//    	    int max=size-1;
+//            int mid=0;
+//             T l;
+//    	              
+//    	          for(int i =0;i<size;i++) {
+//    	               mid = (min+max)/2;
+//    	                l = sortedList.get(mid);
+//    	               if(l.equals(t)) {
+//    	                    break;
+//    	                 }else if ((int)l < (int)t) {
+//    	                    min = (int)mid+1;
+//    	                 }else if ((int)l > (int)t) {
+//    	                    max = (int)mid-1;
+//    	                 }
+//    	               }
+//    	   return max;
+//    	   }
+//
+//    	   public void BinarySearch(List<T> sortedList) {
+//    	   super();
+//    	   this.sortedList = sortedList;
+//    	   }
+//
+//    	   public List<T> getSortedList() {
+//    	   return sortedList;
+//    	   }
+//
+//    	   public void setSortedList(List<T> sortedList) {
+//    	   this.sortedList = sortedList;
+//    	   }
+  
+       
 
 
 
@@ -496,6 +522,7 @@ public class EvaluationService {
 
 
 	}
+	}
 
 	/**
 	 * 12. Given a number n, determine what the nth prime is.
@@ -509,24 +536,29 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
+           
 
-         public int calculateNthPrime(int i) {
+		public int calculateNthPrime(int i) {
+			
          // TODO Write an implementation for this method declaration
          System.out.print("Enter n to compute the nth prime number: ");
+         //int nth = sc.nextInt();
          int num, count;
          num=1;
          count=0;
-         
-        num=num+1;
-         for (i = 2; i <= num; i++){ 
-          if (num % i == 0) {
-             break;
+
+         //while (count < nth){
+           num=num+1;
+           for (i = 2; i <= num; i++){ //Here we will loop from 2 to num
+             if (num % i == 0) {
+               break;
+             }
            }
-     }
-        if ( i == num){//if the number is a prime number
+           if ( i == num){//if it is a prime number
              count = count+1;
-     }
-return 0;
+           }
+       
+      return 0;
 }
 
 	/**
@@ -589,20 +621,19 @@ return 0;
 		 * @param string
 		 * @return
 		 */
-		public static String decode(String string) {
-			// TODO Write an implementation for this method declaration
 
-
-          String output = "";
+               public static String decode(String string) {
+              // TODO Write an implementation for this method declaration
+           String output = "";
           for(int i = 0;i<string.length();i++) {
               if(string.charAt(i)!=' ')
                   output += String.valueOf(convertToInt(string.charAt(i)));
           }
           return output;
 //return null;
-			
-		}
+}
 	}
+
 
 	/**
 	 * 15. The ISBN-10 verification process is used to validate book identification
@@ -699,7 +730,7 @@ return 0;
 		return given.plus(1_000_000_000, ChronoUnit.SECONDS);
 		//return null;
 		}
-	}
+	
 
 	/**
 	 * 18. Given a number, find the sum of all the unique multiples of particular
